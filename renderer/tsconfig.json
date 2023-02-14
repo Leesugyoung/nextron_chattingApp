@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "contexts/AuthContext.js", "contexts/AuthContext.js", "pages/chat"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
