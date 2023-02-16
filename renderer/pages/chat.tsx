@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import Seo from "../components/Seo";
 import Sidebar from "../components/Sidebar";
+import { AuthContext } from "../contexts/AuthContext";
 import chat from "../styles/chat.module.css";
 
 function ChatMainpage() {
+  const { currentUser } = useContext(AuthContext);
+  if (!currentUser) return null;
   return (
     <div className={chat.home}>
       <Seo title="chat" />

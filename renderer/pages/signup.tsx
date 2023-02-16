@@ -21,11 +21,7 @@ function Signup() {
   const signup = async () => {
     const auth = getAuth();
     // Firebase 계정 생성
-    const credential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    )
+    await createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         // Signed in
         const user = userCredential.user;

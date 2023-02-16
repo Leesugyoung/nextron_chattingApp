@@ -4,7 +4,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "contexts/AuthContext.js", "contexts/AuthContext.js", "pages/chat"  ],
+, "contexts/AuthContext.tsx", "contexts/AuthContext.tsx", "pages/chat"  ],
   "exclude": [
     "node_modules"
   ]

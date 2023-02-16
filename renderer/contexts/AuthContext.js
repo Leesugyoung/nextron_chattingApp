@@ -6,7 +6,7 @@ import { auth } from "../pages/_app";
 export const AuthContext = createContext(undefined);
 
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     // 현재 로그인된 사용자 정보 관찰
     const unsub = onAuthStateChanged(auth, user => {

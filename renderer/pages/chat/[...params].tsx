@@ -1,8 +1,45 @@
+import { addDoc, collection, orderBy, query } from "firebase/firestore";
 import Seo from "../../components/Seo";
 import Sidebar from "../../components/Sidebar";
 import chat from "../../styles/chat.module.css";
+import { db } from "../_app";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
-export default function Chat({ uid, email }) {
+export default function Chat({ id, email }) {
+  const q = query(collection(db, `chats/${id}/messages`), orderBy("timestamp"));
+  const [messages] = useCollectionData(q);
+  const { currentUser } = useContext(AuthContext);
+
+  //input
+  const [input, setInput] = useState("");
+  const sendMessage = async e => {
+    e.preventDefault();
+    await addDoc(collection(db, `chats/${id}/messages`), {
+      text: input,
+      sender: currentUser.email,
+      timestamp: new Date(),
+    });
+    setInput("");
+  };
+
+  const getMessages = () => {
+    return messages?.map((msg, index) => {
+      const sender = currentUser && msg.sender === currentUser.email;
+      const timestamp = new Date(
+        msg.timestamp.seconds * 1000
+      ).toLocaleDateString();
+
+      return (
+        <div key={index} className={sender ? chat.send_msg : chat.receive_msg}>
+          <div>{msg.text}</div>
+          <div>{timestamp}</div>
+        </div>
+      );
+    });
+  };
+
   return (
     <div className={chat.home}>
       <Seo title={`${email}`} />
@@ -14,22 +51,15 @@ export default function Chat({ uid, email }) {
           <div className={chat.header}>
             <div className={chat.useremail}>{`🗨️ ${email}`}</div>
           </div>
-          <div className={chat.middle}>
-            <div className={chat.send_msg}>
-              <div>
-                ㅋㅋㄹㅃㅃ~ㅋㅋㄹㅃㅃ~ㅋㅋㄹㅃㅃ~ㅋㅋㄹㅃㅃ~ㅋㅋㄹㅃㅃ~ㅋㅋㄹㅃㅃ~
-                ㅋㅋㄹㅃㅃ~ ㅋㅋㄹㅃㅃ~ ㅋㅋㄹㅃㅃ~
-              </div>
-              <div className={chat.send_msgTime}>13: 30pm</div>
-            </div>
-            <div className={chat.receive_msg}>
-              <div>이러려고 답장했나 자괴감 들고 괴로워...</div>
-              <div className={chat.msgTime}>13: 31pm</div>
-            </div>
-          </div>
+          <div className={chat.middle}>{getMessages()}</div>
           <div className={chat.msgFormArea}>
-            <form>
-              <input type="text" placeholder="내용을 입력하세요." />
+            <form onSubmit={sendMessage}>
+              <input
+                onChange={e => setInput(e.target.value)}
+                type="text"
+                placeholder="내용을 입력하세요."
+                value={input}
+              />
               <button>전송</button>
             </form>
           </div>
@@ -40,11 +70,11 @@ export default function Chat({ uid, email }) {
 }
 
 export async function getServerSideProps({ params: { params } }) {
-  const uid = params[0];
+  const id = params[0];
   const email = params[1];
   return {
     props: {
-      uid,
+      id,
       email,
     },
   };

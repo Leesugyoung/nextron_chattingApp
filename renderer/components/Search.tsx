@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../pages/_app";
+import { AuthContext } from "../contexts/AuthContext";
+import { useRouter } from "next/router";
 
-function Search() {
-  const [useremail, setUseremail] = useState("");
-  const [user, setUser] = useState(null);
+function Search({ chats }) {
+  const router = useRouter();
+  // 검색한 이메일
+  const [inputemail, setInputemail] = useState("");
+  // 검색 후 출력된 이메일
+  const [resultuser, setRsultUser] = useState(null);
+  // 현재 접속중인 유저
+  const { currentUser } = useContext(AuthContext);
+  const inputRef = useRef(null);
+  const [errMsg, setErrMsg] = useState("");
 
   // 유저 검색기능
   const handleSearch = async () => {
-    const q = query(collection(db, "users"), where("email", "==", useremail));
+    const q = query(collection(db, "users"), where("email", "==", inputemail));
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach(user => {
-        setUser(user.data());
+        setRsultUser(user.data());
       });
     } catch (err) {
-      console.log("유저 찾기 실패, 이메일을 확인해 주세요", err);
+      alert("유저 찾기 실패! 이메일을 확인해 주세요");
+      console.log(err);
     }
   };
   // 엔터키 클릭 감지 및 검색기능 실행
@@ -23,12 +33,28 @@ function Search() {
     e.code === "Enter" && handleSearch();
   };
 
+  // 채팅방 존재여부 확인
+  const chatExists = email =>
+    chats?.find(
+      (chat: { users: string | any[] }) =>
+        chat.users.includes(resultuser.email) && chat.users.includes(email)
+    );
+
   // 선택한 유저와의 1:1 채팅방 추가,생성(chatlist)
   const handleAddList = async () => {
-    await addDoc(collection(db, "chatlist"), {
-      uid: user.uid,
-      email: useremail,
-    });
+    if (
+      !chatExists(resultuser.email) &&
+      resultuser.email != currentUser.email
+    ) {
+      await addDoc(collection(db, "chats"), {
+        users: [currentUser.email, resultuser.email],
+      });
+    } else {
+      setErrMsg("이미 생성된 채팅방 입니다!");
+      setTimeout(() => {
+        setErrMsg("");
+      }, 2000); // 3초 후에 errMsg를 지움
+    }
   };
 
   return (
@@ -37,13 +63,20 @@ function Search() {
         <input
           type="text"
           placeholder="🗨️유저검색 후 1:1 채팅 생성하기"
-          onChange={e => setUseremail(e.target.value)}
+          onChange={e => setInputemail(e.target.value)}
           onKeyDown={handleKey}
+          ref={inputRef}
         />
+        {errMsg && <p className="errMsg">{errMsg}</p>}
       </div>
-      {user && (
+      {/* 검색 결과 */}
+      {resultuser && (
         <div className="userList">
-          <div onClick={() => handleAddList()}>{`🟡 ${user.email} `}</div>
+          <div
+            onClick={() => {
+              handleAddList();
+            }}
+          >{`🟡 ${resultuser.email} `}</div>
         </div>
       )}
       <style jsx>{`
@@ -84,6 +117,10 @@ function Search() {
         }
         .userList:hover {
           background-color: #ffc6c6;
+        }
+        .errMsg {
+          font-size: 10px;
+          color: #f92f2f;
         }
       `}</style>
     </div>

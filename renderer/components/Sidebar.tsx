@@ -1,18 +1,22 @@
 import Navbar from "./Navbar";
-import { collection, query, getDocs } from "firebase/firestore";
-import { db, auth } from "../pages/_app";
-import { memo, useCallback, useEffect, useState } from "react";
+import { collection, query, getDocs, onSnapshot } from "firebase/firestore";
+import { db } from "../pages/_app";
+import { memo, useCallback, useContext, useEffect, useState } from "react";
 import Search from "./Search";
 import { useRouter } from "next/router";
+import { AuthContext } from "../contexts/AuthContext";
+import getOtherEmail from "../untils/getOtherEmail";
 
 // 유저 목록
 const Sidebar = memo(() => {
   const router = useRouter();
-  const loggedinuser = auth.currentUser?.email;
-  // 상태 업데이트를 위한
-  const [user, setUsers] = useState(null);
+  const { currentUser } = useContext(AuthContext);
 
-  // firestroe > user 컬렉션 가져오기
+  // 상태 업데이트를 위한 useCallback 사용
+  const [users, setUsers] = useState(null);
+  const [chats, setChats] = useState([]);
+
+  // users 컬렉션 가져오기
   const fetchUserData = useCallback(async () => {
     const q = query(collection(db, "users"));
     const data = await getDocs(q);
@@ -23,39 +27,62 @@ const Sidebar = memo(() => {
     setUsers(newData);
   }, [db]);
 
+  // chats 컬렉션 가져오기
+  const fetchChatData = useCallback(() => {
+    const q = query(collection(db, "chats"));
+    const unsub = onSnapshot(q, snapshot => {
+      const newData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setChats(newData);
+    });
+    return unsub;
+  }, [db]);
+
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [fetchUserData]);
 
-  const onClick = (uid: number, email: string) => {
+  useEffect(() => {
+    fetchChatData();
+  }, [fetchChatData]);
+
+  const onClick = async (id: number, email: string) => {
     router.push({
-      pathname: `/chat/${uid}/${email}`,
+      pathname: `/chat/${id}/${email}`,
     });
   };
 
   return (
     <div>
-      {user ? (
-        <div className="sidebar-container">
-          <Navbar />
-          <div>
-            <Search />
-          </div>
-          <div className="title">🔸USER LIST</div>
-          {/* 로그인된 유저를 제외한 나머지 가입자 유저 목록만 출력 */}
-          {user
-            .filter(e => e.email !== loggedinuser)
-            .map(e => (
-              <div key={e.uid} className="userlist">
-                <span onClick={() => onClick(e.uid, e.email)}>
-                  🟡 {e.email}
-                </span>
-              </div>
-            ))}
+      <div className="sidebar-container">
+        <Navbar />
+        <div>
+          <Search chats={chats} />
         </div>
-      ) : (
-        <h4 className="loading">loding...</h4>
-      )}
+        <div className="title">🔸1:1 CHAT</div>
+        {/* user.email을 포함하는 채팅방에 대한 객체들만 반환 */}
+        {chats && currentUser
+          ? chats
+              ?.filter(chat => chat.users.includes(currentUser.email))
+              .map((chat, index) => (
+                <div key={index} className="chatList">
+                  <span
+                    onClick={() => onClick(chat.id, chat.users[1])}
+                  >{`🗨️ ${getOtherEmail(chat.users, currentUser)}`}</span>
+                </div>
+              ))
+          : ""}
+        <div className="title">🔸USER LIST</div>
+        {/* 로그인된 유저를 제외한 나머지 가입자 유저 목록만 출력 */}
+        {users
+          ? users
+              .filter(e => e.email !== currentUser)
+              .map(e => (
+                <div key={e.uid} className="userlist">
+                  <span>🟡 {e.email}</span>
+                </div>
+              ))
+          : ""}
+      </div>
       <style jsx>{`
         .sidebar-container {
           width: 100%;

@@ -7,17 +7,16 @@ import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECTID,
-  storageBucket: process.env.STORAGEBUCKET,
-  messagingSenderId: process.env.MESSAGINGSENDERID,
-  appId: process.env.APPID,
-  measurementId: process.env.MEASUREMENTID,
-  databaseURL: process.env.DATABASEURL,
+  apiKey: "AIzaSyB1DLvXNmUbMwHEo-Mt7TTyDG3LfvIeQkk",
+  authDomain: "nextron-chatting-app-b0a44.firebaseapp.com",
+  projectId: "nextron-chatting-app-b0a44",
+  storageBucket: "nextron-chatting-app-b0a44.appspot.com",
+  messagingSenderId: "1008329057477",
+  appId: "1:1008329057477:web:a5ff1aa42570e4f6be7cac",
+  measurementId: "G-T2WS1TWX7P",
+  databaseURL:
+    "https://nextron-chatting-app-b0a44-default-rtdb.firebaseio.com/",
 };
-
-// Initialize Firebase
 
 export const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 export const auth = getAuth();

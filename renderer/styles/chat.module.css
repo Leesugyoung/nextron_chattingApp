@@ -44,42 +44,42 @@
   height: 85vh;
 }
 /* ---- send_msg */
-.send_msg div:first-child{
+.send_msg div:first-child {
+  display: block;
   padding: 8px;
   background-color: #88d6ec;
   border-radius: 10px;
   max-width: 70%;
   max-height: 70vh;
-  min-width: 50%;
   font-size: 14px;
-  text-align: right;
-  margin-left: auto;
-  position: relative;
+  float: right;
 }
 .send_msg div:last-child {
   font-size: 11px;
   color: rgb(86, 86, 86);
-  text-align: right;
+  float: right;
   margin-left: auto;
-  margin-top: 5px;
+  margin-top: 20px;
+  margin-right:5px;
 }
 /* ---- recive_msg */
 .receive_msg div:first-child{
+  display: block;
+  float: left;
   padding: 8px;
   background-color: #d9f1f8;
   border-radius: 10px;
-  width: 50%;
   max-width: 70%;
   max-height: 70vh;
   font-size: 14px;
-
 }
 .receive_msg div:last-child {
   font-size: 11px;
   color: rgb(86, 86, 86);
-  text-align: left;
-  margin-right: auto;
-  margin-top: 5px;
+  float: left;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-left:5px;
 }
 
 /* 채팅창 - form, input 영역 */
