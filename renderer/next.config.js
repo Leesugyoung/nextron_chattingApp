@@ -6,4 +6,10 @@ module.exports = {
 
     return config;
   },
+  exportPathMap: function () {
+    return {
+      "/": { page: "/" },
+      "/chat/[...params]": { page: "/chat" },
+    };
+  },
 };
