@@ -1,4 +1,6 @@
 module.exports = {
+  trailingSlash: true,
+  target: "serverless",
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.target = "electron-renderer";
@@ -8,7 +10,7 @@ module.exports = {
   },
   exportPathMap: function () {
     return {
-      "/": { page: "/" },
+      "/": { page: "/home" },
       "/chat/[...params]": { page: "/chat" },
     };
   },
