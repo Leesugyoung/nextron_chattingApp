@@ -1,6 +1,5 @@
 module.exports = {
   trailingSlash: true,
-  target: "serverless",
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.target = "electron-renderer";
