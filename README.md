@@ -4,8 +4,8 @@ Nextron + firebase 를 사용한 채팅앱 입니다.
 
 Next.js 를 공부하며 유용한 프로젝트를 만들고 싶어 찾아보던 중,  
 데스크탑 App 제작이 가능한 Electron 과 Next.js 가 결합된 프레임워크를 발견하였습니다.  
-이에 1:1 채팅이 가능한 데스크탑 App 을 제작하고 싶어 결정 후 제작하게 되었으며  
-현재 마무리 제작중에 있어 다양한 기능이 제공되고 있지 않은 점 이해 바랍니다 :)
+이에 1:1 채팅이 가능한 데스크탑 App 을 제작하고 싶어 결정 후 제작하게 되었으며,  
+백엔드는 firebase 를 사용하였습니다.
 
 (Nextron Github 주소 : https://github.com/saltyshiomix/nextron)
 
