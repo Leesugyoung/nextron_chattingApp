@@ -2,10 +2,8 @@ import { useContext, useRef, useState } from "react";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../pages/_app";
 import { AuthContext } from "../contexts/AuthContext";
-import { useRouter } from "next/router";
 
 function Search({ chats }) {
-  const router = useRouter();
   // 검색한 이메일
   const [inputemail, setInputemail] = useState("");
   // 검색 후 출력된 이메일
@@ -62,7 +60,7 @@ function Search({ chats }) {
       <div className="search_Form">
         <input
           type="text"
-          placeholder="🗨️유저검색 후 1:1 채팅 생성하기"
+          placeholder="유저검색 후 1:1 채팅 생성하기"
           onChange={e => setInputemail(e.target.value)}
           onKeyDown={handleKey}
           ref={inputRef}
