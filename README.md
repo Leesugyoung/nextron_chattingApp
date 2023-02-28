@@ -51,7 +51,23 @@ $npm run dev
 
 ### 📝 프로젝트 구조
 
--📂[src]
+-📂[renderer]  
+├──[components]/  
+　　 └── Navbar.tsx 　# 유저 및 로그아웃 컴포넌트.tsx  
+　　 └── Search.tsx 　# 유저 검색 컴포넌트.tsx
+　　 └── Seo.tsx 　 　# next/head 컴포넌트.tsx
+　　 └── Sidebar.tsx # 메뉴바 구성 컴포넌트.tsx
+├──[contexts]/  
+　　 └── AuthContext.tsx 　# 로그인 유저 전역관리 contexts  
+├──[pages]/  
+　　 └── \_app.tsx 　 # app 구성 요소 정의 컴포넌트.tsx
+　　 └── \_document.tsx 　# HTML 커스텀 컴포넌트.tsx
+　　 └── chat.tsx 　　# chat 메인 화면 컴포넌트.tsx
+　　 └── home.tsx 　　# 메인, 로그인 화면
+　　 └── signup.tsx 　# 회원가입 화면
+　　 └── [chat]/
+　　 　 └── [...params].tsx 　# 유저별 채팅 리스트
+├──[styles]/\*　# 스타일 컴포넌트
 
 ---
 
@@ -63,4 +79,5 @@ $npm run dev
 
 #### 🤯 디벨롭 예정 리스트
 
-- 업데이트 예정
+- 채팅방 삭제 기능
+- 읽지 않은 메시지 1 출력, 읽을 시 제거
