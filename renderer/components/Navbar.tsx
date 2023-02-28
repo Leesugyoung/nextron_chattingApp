@@ -16,7 +16,7 @@ function Navbar() {
         router.push("/home");
       })
       .catch(error => {
-        console.log(error);
+        console.log(error, "로그아웃 시 에러가 발생했습니다.");
       });
   };
 
