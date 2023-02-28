@@ -4,8 +4,8 @@ import { db } from "../pages/_app";
 import { memo, useCallback, useContext, useEffect, useState } from "react";
 import Search from "./Search";
 import { useRouter } from "next/router";
-import { AuthContext } from "../contexts/AuthContext";
 import getOtherEmail from "../untils/getOtherEmail";
+import { AuthContext } from "../contexts/AuthContext";
 
 // 유저 목록
 const Sidebar = memo(() => {
@@ -60,9 +60,9 @@ const Sidebar = memo(() => {
         </div>
         <div className="title">🔸1:1 CHAT</div>
         {/* user.email을 포함하는 채팅방에 대한 객체들만 반환 */}
-        {chats && currentUser
+        {chats
           ? chats
-              ?.filter(chat => chat.users.includes(currentUser.email))
+              ?.filter(chat => chat.users.includes(currentUser?.email))
               .map((chat, index) => (
                 <div key={index} className="chatList">
                   <span
@@ -75,7 +75,7 @@ const Sidebar = memo(() => {
         {/* 로그인된 유저를 제외한 나머지 가입자 유저 목록만 출력 */}
         {users
           ? users
-              .filter(e => e.email !== currentUser)
+              .filter(e => e.email !== currentUser?.email)
               .map(e => (
                 <div key={e.uid} className="userlist">
                   <span>🟡 {e.email}</span>
