@@ -10,14 +10,13 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
-  authDomain: "nextron-chatting-app-b0a44.firebaseapp.com",
-  projectId: process.env.NEXT_PUBLIC_PROJECTID,
+  authDomain: process.env.AUTHDOMAIN,
+  projectId: process.env.PROJECTID,
   storageBucket: "nextron-chatting-app-b0a44.appspot.com",
   messagingSenderId: "1008329057477",
-  appId: process.env.NEXT_PUBLIC_APPID,
-  measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID,
-  databaseURL:
-    "https://nextron-chatting-app-b0a44-default-rtdb.firebaseio.com/",
+  appId: process.env.APPID,
+  measurementId: process.env.MEASUREMENTID,
+  databaseURL: process.env.DATABASEURL,
 };
 
 export const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();

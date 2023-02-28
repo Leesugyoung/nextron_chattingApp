@@ -15,9 +15,13 @@ function ChatMainpage() {
           <Sidebar />
         </div>
         <div className={chat.chat}>
-          <div className={chat.maintitle}>
-            <p>안녕하세요 :)</p>
-            <p>Nextron Chatting App에 오신걸 환영합니다.✨</p>
+          <div className={chat.titleContainer}>
+            <p className={chat.title_1}>
+              Hi! There <span>👋</span>
+            </p>
+            <p className={chat.title_2}>
+              Nextron Chatting App에 오신걸 환영합니다 :)
+            </p>
           </div>
         </div>
       </div>
