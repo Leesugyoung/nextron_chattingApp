@@ -48,6 +48,7 @@ body, main {
   line-height: 1.2;
   font-family: "Segoe UI", Roboto, Ubuntu, sans-serif;
 	background: linear-gradient(to top, #29caf7, #beeaf8);
+	min-width: 500px;
 }
 a {
   color: inherit;
