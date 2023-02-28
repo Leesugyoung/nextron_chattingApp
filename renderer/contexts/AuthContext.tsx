@@ -2,11 +2,15 @@ import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../pages/_app";
 
+interface IUser {
+  email: string;
+}
+
 // context api 사용, 로그인한 유저 확인
 export const AuthContext = createContext(undefined);
 
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<IUser>(null);
   useEffect(() => {
     // 현재 로그인된 사용자 정보 관찰
     const unsub = onAuthStateChanged(auth, user => {
