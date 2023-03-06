@@ -5,7 +5,7 @@ directories:
   output: dist
   buildResources: resources
 files:
-  - from: .
+  - from: .env
     filter:
       - package.json
       - app
