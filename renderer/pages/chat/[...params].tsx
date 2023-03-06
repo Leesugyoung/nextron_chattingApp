@@ -6,8 +6,12 @@ import { db } from "../_app";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { useRouter } from "next/router";
 
-export default function Chat({ id, email }) {
+export default function Chat() {
+  const { params } = useRouter().query;
+  const id = params?.[0];
+  const email = params?.[1];
   const q = query(collection(db, `chats/${id}/messages`), orderBy("timestamp"));
   const [messages] = useCollectionData(q);
   const { currentUser } = useContext(AuthContext);
@@ -67,15 +71,4 @@ export default function Chat({ id, email }) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps({ params: { params } }) {
-  const id = params[0];
-  const email = params[1];
-  return {
-    props: {
-      id,
-      email,
-    },
-  };
 }
