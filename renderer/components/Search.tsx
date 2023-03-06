@@ -33,16 +33,18 @@ function Search({ chats }) {
 
   // 채팅방 존재여부 확인
   const chatExists = email =>
-    chats?.find(
-      (chat: { users: string | any[] }) =>
-        chat.users.includes(resultuser.email) && chat.users.includes(email)
-    );
+    chats?.find((chat: { users: string[] }) => {
+      if (!chat.users) return false; // chat.users가 undefined이면 false를 반환
+      return (
+        chat.users.includes(resultuser?.email) && chat.users.includes(email)
+      );
+    });
 
   // 선택한 유저와의 1:1 채팅방 추가,생성(chatlist)
   const handleAddList = async () => {
     if (
       !chatExists(resultuser.email) &&
-      resultuser.email != currentUser.email
+      resultuser.email !== currentUser.email
     ) {
       await addDoc(collection(db, "chats"), {
         users: [currentUser.email, resultuser.email],
@@ -51,7 +53,7 @@ function Search({ chats }) {
       setErrMsg("이미 생성된 채팅방 입니다!");
       setTimeout(() => {
         setErrMsg("");
-      }, 2000); // 3초 후에 errMsg를 지움
+      }, 1000); //1초 후에 errMsg를 지움
     }
   };
 

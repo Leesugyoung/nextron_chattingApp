@@ -60,17 +60,18 @@ const Sidebar = memo(() => {
         </div>
         <div className="title">🔸1:1 CHAT</div>
         {/* user.email을 포함하는 채팅방에 대한 객체들만 반환 */}
-        {chats
-          ? chats
-              ?.filter(chat => chat.users.includes(currentUser?.email))
-              .map((chat, index) => (
-                <div key={index} className="chatList">
-                  <span
-                    onClick={() => onClick(chat.id, chat.users[1])}
-                  >{`🗨️ ${getOtherEmail(chat.users, currentUser)}`}</span>
-                </div>
-              ))
-          : ""}
+        {chats &&
+          chats
+            ?.filter(
+              chat => chat.users && chat.users.includes(currentUser?.email)
+            )
+            .map((chat, index) => (
+              <div key={index} className="chatList">
+                <span
+                  onClick={() => onClick(chat.id, chat.users[1])}
+                >{`🗨️ ${getOtherEmail(chat.users, currentUser)}`}</span>
+              </div>
+            ))}
         <div className="title">🔸USER LIST</div>
         {/* 로그인된 유저를 제외한 나머지 가입자 유저 목록만 출력 */}
         {users
