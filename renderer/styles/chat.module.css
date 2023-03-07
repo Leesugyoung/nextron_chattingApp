@@ -42,6 +42,11 @@
   flex-direction: column;
   gap: 20px;
   height: 85vh;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.middle::-webkit-scrollbar {
+  display: none;
 }
 /* ---- send_msg */
 .send_msg div:first-child {
