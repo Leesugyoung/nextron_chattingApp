@@ -16,16 +16,19 @@ function Search({ chats }) {
   // 유저 검색기능
   const handleSearch = async () => {
     const q = query(collection(db, "users"), where("email", "==", inputemail));
-    try {
-      const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.docs.length > 0) {
       querySnapshot.forEach(user => {
         setRsultUser(user.data());
       });
-    } catch (err) {
-      alert("유저 찾기 실패! 이메일을 확인해 주세요");
-      console.log(err);
+    } else {
+      setErrMsg("이메일을 다시 확인해 주세요");
+      setTimeout(() => {
+        setErrMsg("");
+      }, 1000); //1초 후에 errMsg를 지움
     }
   };
+
   // 엔터키 클릭 감지 및 검색기능 실행
   const handleKey = e => {
     e.code === "Enter" && handleSearch();
@@ -36,7 +39,7 @@ function Search({ chats }) {
     chats?.find((chat: { users: string[] }) => {
       if (!chat.users) return false; // chat.users가 undefined이면 false를 반환
       return (
-        chat.users.includes(resultuser?.email) && chat.users.includes(email)
+        chat.users.includes(currentUser?.email) && chat.users.includes(email)
       );
     });
 
