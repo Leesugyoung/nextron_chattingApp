@@ -3,7 +3,7 @@
   "name": "nextron-chatting-app",
   "description": "Nextron.js 를 사용한 채팅 앱 입니다.",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "Leesugyoung",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
@@ -11,6 +11,10 @@
     "build:mac": "nextron build --mac --x64",
     "build:win": "nextron build --win --x64"
   },
+  "keywords": [
+    "Electron",
+    "Nextron"
+  ],
   "dependencies": {
     "@types/firebase": "^3.2.1",
     "dotenv": "^16.0.3",
