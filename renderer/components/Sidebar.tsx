@@ -1,5 +1,14 @@
 import Navbar from "./Navbar";
-import { collection, query, getDocs, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  query,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  doc,
+  updateDoc,
+  deleteField,
+} from "firebase/firestore";
 import { db } from "../pages/_app";
 import { memo, useCallback, useContext, useEffect, useState } from "react";
 import Search from "./Search";
@@ -7,7 +16,7 @@ import { useRouter } from "next/router";
 import getOtherEmail from "../untils/getOtherEmail";
 import { AuthContext } from "../contexts/AuthContext";
 
-// 유저 목록
+// 채팅, 유저목록
 const Sidebar = memo(() => {
   const router = useRouter();
   const { currentUser } = useContext(AuthContext);
@@ -45,10 +54,21 @@ const Sidebar = memo(() => {
     fetchChatData();
   }, [fetchChatData]);
 
+  // 해당하는 유저와의 채팅방으로 이동
   const onClick = async (id: number, email: string) => {
     router.push({
       pathname: `/chat/${id}/${email}`,
     });
+  };
+
+  // 채팅방 삭제
+  const handleChatDel = async (chatId: string) => {
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
+      await deleteDoc(doc(db, "chats", chatId));
+      router.push({
+        pathname: `/chat`,
+      });
+    }
   };
 
   return (
@@ -70,6 +90,12 @@ const Sidebar = memo(() => {
                 <span
                   onClick={() => onClick(chat.id, chat.users[1])}
                 >{`🗨️ ${getOtherEmail(chat.users, currentUser)}`}</span>
+                <button
+                  className="chatDelBtn"
+                  onClick={() => handleChatDel(chat.id)}
+                >
+                  🗑️
+                </button>
               </div>
             ))}
         <div className="title">🔸USER LIST</div>
@@ -106,12 +132,25 @@ const Sidebar = memo(() => {
         }
         .chatList {
           cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
         .chatList:hover {
           background-color: #ffe9e9;
         }
         .userlist:hover {
           color: #ff3131;
+        }
+        .chatDelBtn {
+          border: none;
+          background-color: transparent;
+          font-size: 10px;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+        .chatDelBtn:hover {
+          background-color: #ffc7c7;
         }
         .loading {
           font-size: 14px;
