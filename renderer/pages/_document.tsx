@@ -9,13 +9,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <meta
-            name="description"
-            content="Nextron.js 를 사용한 채팅 앱 입니다."
-          />
-          <meta name="keywords" content="nextron.js, next.js, talk, chatting" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
