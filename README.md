@@ -69,43 +69,44 @@ Next.js 를 공부하며 유용한 프로젝트를 만들고 싶어 고민하던
 <details>
 <summary>메인페이지</summary>
 <div markdown="1">
-<img width="80%" src="https://user-images.githubusercontent.com/109075864/228923746-a1f7caed-1000-481b-82bf-73e8e2fccadf.png"/>
+<img width="90%" src="https://user-images.githubusercontent.com/109075864/228923746-a1f7caed-1000-481b-82bf-73e8e2fccadf.png"/>
 </div>
 </details>
 <details>
 <summary>회원가입</summary>
 <div markdown="1">
-<img width="80%" src="https://user-images.githubusercontent.com/109075864/228924587-a74b2e1a-2187-4ae2-abdb-ffbab992f212.png"/>
+<img width="90%" src="https://user-images.githubusercontent.com/109075864/228924587-a74b2e1a-2187-4ae2-abdb-ffbab992f212.png"/>
 </div>
 </details>
 <details>
 <summary>로그인 후</summary>
 <div markdown="1">
-<img width="80%" src="https://user-images.githubusercontent.com/109075864/228925234-3762a633-ec53-408a-a753-f2a384247f71.png"/>
+<img width="90%" src="https://user-images.githubusercontent.com/109075864/228925234-3762a633-ec53-408a-a753-f2a384247f71.png"/>
 </div>
 </details>
 <details>
 <summary>유저 검색</summary>
 <div markdown="1">
-<img width="80%" src="https://user-images.githubusercontent.com/109075864/228925456-46795520-c1e8-4890-998c-f77e5ffd986f.png"/>
+<img width="90%" src="https://user-images.githubusercontent.com/109075864/228925456-46795520-c1e8-4890-998c-f77e5ffd986f.png"/>
 </div>
 </details>
 <details>
 <summary>채팅방 생성 & 채팅창</summary>
 <div markdown="1">
-<img width="80%" src="https://user-images.githubusercontent.com/109075864/228925764-472ca5f6-e1d5-40ba-83e5-2b5fc8fffa26.png"/>
+<img width="90%" src="https://user-images.githubusercontent.com/109075864/228925764-472ca5f6-e1d5-40ba-83e5-2b5fc8fffa26.png"/>
 </div>
 </details>
 <details>
 <summary>답장 화면</summary>
 <div markdown="1">
-<img width="80%" src="https://user-images.githubusercontent.com/109075864/228926166-e9ea9ba8-0e2d-434f-a89a-7dc84b49342f.png"/>
+<img width="90%" src="https://user-images.githubusercontent.com/109075864/228926166-e9ea9ba8-0e2d-434f-a89a-7dc84b49342f.png"/>
 </div>
 </details>
 <details>
 <summary>채팅방 삭제</summary>
 <div markdown="1">
-<img width="80%" src="https://user-images.githubusercontent.com/109075864/228926364-26252343-cf68-478a-8409-fcacce461ce0.png"/>
+<img width="90%" src="https://user-images.githubusercontent.com/109075864/228926364-26252343-cf68-478a-8409-fcacce461ce0.png"/>
+<img width="90%" src="https://user-images.githubusercontent.com/109075864/228926858-047385e3-637f-4b13-81ce-964067da8d7e.png"/>
 </div>
 </details>
 
