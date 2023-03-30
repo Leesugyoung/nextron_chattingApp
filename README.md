@@ -67,12 +67,13 @@ Next.js 를 공부하며 유용한 프로젝트를 만들고 싶어 고민하던
 <div markdown="1">
 <img width="80%" src="https://user-images.githubusercontent.com/109075864/228923746-a1f7caed-1000-481b-82bf-73e8e2fccadf.png"/>
 </div>
+</details>
+<details>
 <summary>회원가입</summary>
 <div markdown="1">
 <img width="80%" src="https://user-images.githubusercontent.com/109075864/228924587-a74b2e1a-2187-4ae2-abdb-ffbab992f212.png"/>
 </div>
 </details>
-
 
 ---
 
