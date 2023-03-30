@@ -104,7 +104,8 @@ Next.js 를 공부하며 유용한 프로젝트를 만들고 싶어 고민하던
 <img width="80%" src="https://user-images.githubusercontent.com/109075864/228926364-26252343-cf68-478a-8409-fcacce461ce0.png"/>
 </div>
 </details>
----
+
+---  
 
 #### 📖 배운점? 성과?
 
