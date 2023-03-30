@@ -63,8 +63,7 @@ Next.js 를 공부하며 유용한 프로젝트를 만들고 싶어 고민하던
 ---  
 
 - 메인페이지  
-![](![image](https://user-images.githubusercontent.com/109075864/228923358-7b41ef01-c7cf-44cb-8227-d81b9d5127b5.png)
-)
+<img width="80%" src="https://user-images.githubusercontent.com/109075864/228923746-a1f7caed-1000-481b-82bf-73e8e2fccadf.png"/>
 
 ---
 
