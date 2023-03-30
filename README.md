@@ -74,6 +74,12 @@ Next.js 를 공부하며 유용한 프로젝트를 만들고 싶어 고민하던
 <img width="80%" src="https://user-images.githubusercontent.com/109075864/228924587-a74b2e1a-2187-4ae2-abdb-ffbab992f212.png"/>
 </div>
 </details>
+<details>
+<summary>로그인 후</summary>
+<div markdown="1">
+<img width="80%" src="https://user-images.githubusercontent.com/109075864/228925234-3762a633-ec53-408a-a753-f2a384247f71.png"/>
+</div>
+</details>
 
 ---
 
